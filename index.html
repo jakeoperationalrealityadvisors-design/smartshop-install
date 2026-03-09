@@ -1,189 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SmartShop by ORA</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartShop by ORA</title>
+  <meta name="description" content="SmartShop install page and early supporter plans." />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-<style>
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #091018 0%, #0d1117 100%);
+      font-family: Arial, sans-serif;
+      color: white;
+    }
 
-body{
-  margin:0;
-  background:#0d1117;
-  font-family:Arial, sans-serif;
-  color:white;
-}
+    .container {
+      max-width: 420px;
+      margin: 0 auto;
+      padding: 24px 18px;
+    }
 
-.container{
-  max-width:420px;
-  margin:auto;
-  padding:20px;
-}
+    .card {
+      background: #171c24;
+      border-radius: 22px;
+      padding: 24px;
+      margin-bottom: 18px;
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      overflow: hidden;
+    }
 
-.card{
-  background:#171c24;
-  border-radius:22px;
-  padding:22px;
-  margin-bottom:18px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.4);
-  border:1px solid rgba(255,255,255,0.05);
-}
+    .logo {
+      width: 120px;
+      display: block;
+      margin: 0 auto 12px auto;
+      border-radius: 22px;
+    }
 
-.logo{
-  width:140px;
-  display:block;
-  margin:0 auto 12px auto;
-}
+    h1 {
+      text-align: center;
+      margin: 6px 0 6px 0;
+      font-size: 32px;
+      letter-spacing: -0.5px;
+    }
 
-h1{
-  text-align:center;
-  margin:0;
-  font-size:28px;
-}
+    h2 {
+      margin: 0 0 10px 0;
+      font-size: 20px;
+    }
 
-p{
-  color:#a7b0bf;
-  line-height:1.5;
-}
+    p {
+      color: #a7b0bf;
+      line-height: 1.55;
+      margin: 0 0 12px 0;
+    }
 
-.btn{
-  display:block;
-  width:100%;
-  padding:16px;
-  text-align:center;
-  text-decoration:none;
-  font-weight:bold;
-  border-radius:14px;
-  margin-top:12px;
-}
+    .price {
+      font-size: 34px;
+      font-weight: bold;
+      margin-top: 4px;
+    }
 
-.install{
-  background:#43d17c;
-  color:#07120b;
-}
+    .price span {
+      font-size: 14px;
+      color: #a7b0bf;
+      font-weight: normal;
+    }
 
-.launch{
-  background:#43d17c;
-  color:#07120b;
-}
+    .tag {
+      font-size: 12px;
+      background: rgba(67, 209, 124, 0.15);
+      padding: 6px 10px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 12px;
+      color: #d8ffe8;
+    }
 
-.early{
-  background:#1f2733;
-  color:white;
-  border:1px solid rgba(255,255,255,0.08);
-}
+    .btn {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      padding: 16px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 14px;
+      margin-top: 12px;
+      transition: 0.2s;
+      box-sizing: border-box;
+    }
 
-.price{
-  font-size:28px;
-  font-weight:bold;
-  margin-top:8px;
-}
+    .btn:hover {
+      transform: translateY(-1px);
+    }
 
-.price span{
-  font-size:14px;
-  color:#a7b0bf;
-  font-weight:normal;
-}
+    .install {
+      background: #43d17c;
+      color: #07120b;
+      box-shadow: 0 8px 18px rgba(67, 209, 124, 0.35);
+    }
 
-.tag{
-  font-size:12px;
-  background:rgba(67,209,124,0.15);
-  padding:6px 10px;
-  border-radius:20px;
-  display:inline-block;
-  margin-top:6px;
-}
+    .launch {
+      background: #43d17c;
+      color: #07120b;
+      box-shadow: 0 8px 18px rgba(67, 209, 124, 0.25);
+    }
 
-.footer{
-  text-align:center;
-  color:#667085;
-  font-size:12px;
-  margin-top:25px;
-}
+    .early {
+      background: #1f2733;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
 
-</style>
+    .steps p {
+      color: #d9e1ec;
+      margin-bottom: 8px;
+    }
+
+    .footer {
+      text-align: center;
+      color: #667085;
+      font-size: 12px;
+      margin-top: 26px;
+    }
+  </style>
 </head>
-
 <body>
+  <div class="container">
 
-<div class="container">
+    <div class="card">
+      <img src="smartshop-logo.png" class="logo" alt="SmartShop logo" />
 
-<div class="card">
+      <h1>SmartShop</h1>
 
-<img src="smartshop-logo.png" class="logo">
+      <p style="text-align:center;">
+        AI powered grocery optimization.
+      </p>
 
-<h1>SmartShop</h1>
+      <p style="text-align:center;">
+        Find better grocery prices, plan smarter trips, and keep more money in your pocket.
+      </p>
 
-<p style="text-align:center;">
-AI powered grocery optimization.
-</p>
+      <a class="btn install"
+         href="https://drive.google.com/uc?export=download&id=1yk4j0IhoofhC1FkXM8PqmRcuYSSv2XxS">
+        Install SmartShop
+      </a>
 
-<a class="btn install"
-href="https://drive.google.com/uc?export=download&id=1yk4j0IhoofhC1FkXM8PqmRcuYSSv2XxS">
-Install SmartShop
-</a>
+      <p style="font-size:12px; text-align:center;">
+        Android APK download — you may need to enable "Install Unknown Apps".
+      </p>
+    </div>
 
-<p style="font-size:12px;text-align:center;">
-Android APK download. You may need to allow "Install Unknown Apps".
-</p>
+    <div class="card">
+      <h2>Launch Supporter Plan</h2>
 
-</div>
+      <p>Public launch special for early supporters.</p>
 
+      <div class="price">$10 <span>/ year</span></div>
 
-<div class="card">
+      <div class="tag">Launch Special</div>
 
-<h2>Launch Supporter Plan</h2>
+      <a class="btn launch"
+         href="https://buy.stripe.com/bJe00c5be9WggNTaSx8ww0h"
+         target="_blank"
+         rel="noopener noreferrer">
+        Unlock Launch Plan
+      </a>
+    </div>
 
-<p>Public launch special.</p>
+    <div class="card">
+      <h2>Early Supporter Plan</h2>
 
-<div class="price">$10 <span>/ year</span></div>
+      <p>Private offer for family, testers and early insiders.</p>
 
-<div class="tag">Launch Special</div>
+      <div class="price">$1 <span>/ year</span></div>
 
-<a class="btn launch"
-href="https://buy.stripe.com/bJe00c5be9WggNTaSx8ww0h"
-target="_blank">
-Unlock Launch Plan
-</a>
+      <div class="tag">Private Early Offer</div>
 
-</div>
+      <a class="btn early"
+         href="https://buy.stripe.com/6oU00ccDG3xSfJP0dT8ww0i"
+         target="_blank"
+         rel="noopener noreferrer">
+        Unlock Early Supporter
+      </a>
+    </div>
 
+    <div class="card steps">
+      <h2>How It Works</h2>
 
-<div class="card">
+      <p>1. Install SmartShop</p>
+      <p>2. Open the app and create your account</p>
+      <p>3. Choose your supporter plan</p>
+    </div>
 
-<h2>Early Supporter Plan</h2>
+    <div class="footer">
+      SmartShop by ORA Developments • PEI
+    </div>
 
-<p>Private offer for early users and testers.</p>
-
-<div class="price">$1 <span>/ year</span></div>
-
-<div class="tag">Private Early Offer</div>
-
-<a class="btn early"
-href="https://buy.stripe.com/6oU00ccDG3xSfJP0dT8ww0i"
-target="_blank">
-Unlock Early Supporter
-</a>
-
-</div>
-
-
-<div class="card">
-
-<h3>How It Works</h3>
-
-<p>1. Install SmartShop</p>
-<p>2. Open the app and create your account</p>
-<p>3. Choose your supporter plan</p>
-
-</div>
-
-
-<div class="footer">
-SmartShop by ORA Developments • PEI
-</div>
-
-</div>
-
+  </div>
 </body>
 </html>
