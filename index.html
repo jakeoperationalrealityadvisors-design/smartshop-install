@@ -52,11 +52,8 @@
       --green:#46d67f;
       --green-2:#2db766;
       --green-glow:rgba(70,214,127,0.25);
-      --white-glow:rgba(255,255,255,0.06);
       --shadow:0 18px 40px rgba(0,0,0,0.42);
       --radius-xl:28px;
-      --radius-lg:20px;
-      --radius-md:16px;
       --max:460px;
     }
 
@@ -314,34 +311,6 @@
       font-size:14px;
     }
 
-    .feature-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-    }
-
-    .feature{
-      background:rgba(255,255,255,0.03);
-      border:1px solid var(--stroke);
-      border-radius:16px;
-      padding:14px;
-      min-height:100px;
-    }
-
-    .feature strong{
-      display:block;
-      font-size:16px;
-      margin-bottom:6px;
-      color:#f1f6fc;
-    }
-
-    .feature span{
-      font-size:13px;
-      color:var(--muted);
-      line-height:1.45;
-      display:block;
-    }
-
     .qr-box{
       text-align:center;
     }
@@ -355,22 +324,6 @@
       padding:12px;
       margin-top:8px;
       box-shadow:0 10px 24px rgba(0,0,0,0.28);
-    }
-
-    .mini-badges{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-top:8px;
-    }
-
-    .mini-badge{
-      font-size:12px;
-      color:#d9e4ef;
-      background:rgba(255,255,255,0.03);
-      border:1px solid var(--stroke);
-      border-radius:999px;
-      padding:8px 10px;
     }
 
     details{
@@ -392,17 +345,6 @@
 
     details p{
       margin:10px 0 0;
-    }
-
-    .notice{
-      margin-top:14px;
-      background:rgba(70,214,127,0.08);
-      border:1px solid rgba(70,214,127,0.14);
-      color:#defbe8;
-      border-radius:16px;
-      padding:14px;
-      line-height:1.5;
-      font-size:14px;
     }
 
     .footer{
@@ -441,10 +383,6 @@
 
       .price{
         font-size:38px;
-      }
-
-      .feature-grid{
-        grid-template-columns:1fr;
       }
     }
   </style>
@@ -495,31 +433,15 @@
     <div class="grid">
 
       <section class="card">
-  <div class="card-title">
-    <div class="icon">🛒</div>
+        <div class="card-title">
+          <div class="icon">💸</div>
+          <h2>Launch Supporter Plan</h2>
+        </div>
 
         <p>Public launch special for early supporters getting in at launch.</p>
 
-       <section class="card">
-  <div class="card-title">
-    <div class="icon">💸</div>
-    <h2>Launch Supporter Plan</h2>
-  </div>
-
-  <p>Public launch special for early supporters getting in at launch.</p>
-
-  <div class="price">$10 <span>/ year</span></div>
-  <div class="pill">Launch Special</div>
-
-  <a
-    class="btn btn-primary"
-    href="https://buy.stripe.com/bJe00c5be9WggNTaSx8ww0h"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Unlock Launch Plan
-  </a>
-</section>
+        <div class="price">$10 <span>/ year</span></div>
+        <div class="pill">Launch Special</div>
 
         <a
           class="btn btn-primary"
@@ -529,45 +451,6 @@
         >
           Unlock Launch Plan
         </a>
-
-        <div class="notice">
-          Best launch flow: install SmartShop first, open the app, create your account, then unlock the Launch Plan.
-        </div>
-      </section>
-
-      <section class="card">
-        <div class="card-title">
-          <div class="icon">🛒</div>
-          <h2>Why People Will Use It</h2>
-        </div>
-
-        <p>SmartShop is built for real grocery runs, not fluff.</p>
-
-        <div class="feature-grid">
-          <div class="feature">
-            <strong>Compare</strong>
-            <span>See better price opportunities instead of guessing store to store.</span>
-          </div>
-          <div class="feature">
-            <strong>Plan</strong>
-            <span>Build smarter shopping trips with less wasted time and fuel.</span>
-          </div>
-          <div class="feature">
-            <strong>Save</strong>
-            <span>Keep more money in your pocket over the long run.</span>
-          </div>
-          <div class="feature">
-            <strong>Launch Early</strong>
-            <span>Get in now while pricing is simple and low.</span>
-          </div>
-        </div>
-
-        <div class="mini-badges">
-          <span class="mini-badge">Android available now</span>
-          <span class="mini-badge">PEI-built</span>
-          <span class="mini-badge">Launch pricing live</span>
-          <span class="mini-badge">Mobile-first</span>
-        </div>
       </section>
 
       <section class="card">
@@ -626,7 +509,7 @@
     </div>
 
     <div class="footer">
-      SmartShop by ORA Developments • PEI<br>
+      SmartShop by ORA Developments • PEI<br />
       Built for smarter grocery shopping.
     </div>
 
