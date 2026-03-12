@@ -1,256 +1,464 @@
-import { useEffect, useState, useCallback } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { useAuth } from "@/hooks/useAuth";
-import { supabase } from "@/integrations/supabase/client";
-import { Button } from "@/components/ui/button";
-import {
-  Download,
-  ExternalLink,
-  Loader2,
-  ShieldCheck,
-  Smartphone,
-  CheckCircle2,
-  Cloud,
-  Lock,
-  ChevronLeft,
-} from "lucide-react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>SmartShop by ORA | Access & Install</title>
 
-const APK_URL =
-  "https://jakeoperationalrealityadvisors-design.github.io/smartshop-install/smart-shop-v1.02.apk";
+  <meta name="title" content="SmartShop by ORA" />
+  <meta
+    name="description"
+    content="Open SmartShop on web, sign in, or access the Android install route. Built to help you shop smarter and save time, gas, and money."
+  />
+  <meta
+    name="keywords"
+    content="SmartShop, grocery app, grocery savings, price comparison, PEI grocery app, SmartShop ORA"
+  />
+  <meta name="author" content="Operational Reality Advisors" />
+  <meta name="robots" content="index, follow" />
 
-type EventType =
-  | "get_app_page_open"
-  | "apk_download_click"
-  | "get_app_blocked_not_logged_in"
-  | "get_app_blocked_not_subscribed";
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="SmartShop by ORA" />
+  <meta
+    property="og:description"
+    content="Open SmartShop in seconds. Use the web app, sign in, or access Android download through your account."
+  />
+  <meta property="og:url" content="https://jakeoperationalrealityadvisors-design.github.io/smartshop-install/" />
+  <meta property="og:image" content="https://jakeoperationalrealityadvisors-design.github.io/smartshop-install/smartshop-logo.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="SmartShop by ORA" />
 
-export default function GetApp() {
-  const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const { user, subscription, authLoading } = useAuth();
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SmartShop by ORA" />
+  <meta
+    name="twitter:description"
+    content="Shop smarter with SmartShop by ORA. Open the web app or access Android install through your account."
+  />
+  <meta name="twitter:image" content="https://jakeoperationalrealityadvisors-design.github.io/smartshop-install/smartshop-logo.png" />
 
-  const [ready, setReady] = useState(false);
-  const [isLoggingDownload, setIsLoggingDownload] = useState(false);
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="SmartShop" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#0b1118" />
 
-  const source = searchParams.get("source") ?? "direct";
-  const wantsDownload = searchParams.get("download") === "apk";
+  <link rel="canonical" href="https://jakeoperationalrealityadvisors-design.github.io/smartshop-install/" />
 
-  const logEvent = useCallback(
-    async (eventType: EventType, extraMetadata?: Record<string, unknown>) => {
-      try {
-        await supabase.from("app_events").insert({
-          event_type: eventType,
-          user_id: user?.id ?? null,
-          metadata: {
-            source,
-            wantsDownload,
-            email: user?.email ?? null,
-            subscribed: subscription.subscribed ?? false,
-            userAgent: navigator.userAgent,
-            path: window.location.pathname,
-            ...extraMetadata,
-          },
-        });
-      } catch (error) {
-        console.error("Failed to log app event:", error);
-      }
-    },
-    [user?.id, user?.email, subscription.subscribed, source, wantsDownload],
-  );
-
-  useEffect(() => {
-    if (authLoading || subscription.loading) return;
-    setReady(true);
-  }, [authLoading, subscription.loading]);
-
-  useEffect(() => {
-    if (!ready) return;
-
-    void logEvent("get_app_page_open");
-
-    if (!user) {
-      void logEvent("get_app_blocked_not_logged_in");
-      navigate("/pricing", { replace: true });
-      return;
+  <style>
+    :root {
+      --bg: #0b1118;
+      --bg-2: #0f1722;
+      --panel: rgba(18, 26, 36, 0.95);
+      --panel-2: #182230;
+      --panel-3: rgba(255, 255, 255, 0.04);
+      --text: #f4f7fb;
+      --muted: #b8c2cf;
+      --muted-2: #8e9aaa;
+      --blue: #2f80ed;
+      --blue-hover: #256ad0;
+      --green: #21a366;
+      --green-hover: #1b8553;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(47, 128, 237, 0.22);
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.38);
+      --radius-xl: 28px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --soft: #d8e8ff;
+      --success-soft: rgba(33, 163, 102, 0.14);
+      --blue-soft: rgba(47, 128, 237, 0.12);
     }
 
-    if (!subscription.subscribed) {
-      void logEvent("get_app_blocked_not_subscribed");
-      navigate("/pricing", { replace: true });
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top, rgba(47, 128, 237, 0.14), transparent 30%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+      min-height: 100vh;
     }
-  }, [ready, user, subscription.subscribed, navigate, logEvent]);
 
-  const handleDownload = async () => {
-    setIsLoggingDownload(true);
+    a { color: inherit; }
 
-    await logEvent("apk_download_click", {
-      destination: APK_URL,
-    });
+    .wrap {
+      width: 100%;
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 28px 18px 44px;
+    }
 
-    setIsLoggingDownload(false);
-    window.open(APK_URL, "_blank", "noopener");
-  };
+    .hero {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
 
-  if (!ready || !user || !subscription.subscribed) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="flex flex-col items-center gap-3 text-center">
-          <Loader2 className="h-8 w-8 animate-spin text-primary" />
-          <p className="text-sm text-muted-foreground">Checking access…</p>
-        </div>
+    .hero-top {
+      padding: 28px 22px 12px;
+      text-align: center;
+    }
+
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: var(--soft);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      margin-bottom: 18px;
+      border: 1px solid rgba(47, 128, 237, 0.18);
+      text-transform: uppercase;
+    }
+
+    .logo {
+      width: 220px;
+      max-width: 88%;
+      height: auto;
+      display: block;
+      margin: 0 auto 18px;
+      filter: drop-shadow(0 12px 26px rgba(0, 0, 0, 0.28));
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 36px;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+    }
+
+    .subhead {
+      margin: 0 auto;
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.65;
+    }
+
+    .hero-callout {
+      margin: 22px 22px 0;
+      padding: 18px 18px;
+      background: linear-gradient(135deg, rgba(47, 128, 237, 0.14), rgba(33, 163, 102, 0.1));
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      text-align: center;
+      color: #eaf3ff;
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .hero-callout strong { color: #ffffff; }
+
+    .web-option {
+      margin: 16px 22px 0;
+      padding: 16px 18px;
+      background: var(--panel-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      text-align: left;
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    .web-option strong { color: var(--text); }
+
+    .actions {
+      padding: 22px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      text-decoration: none;
+      text-align: center;
+      padding: 17px 18px;
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      font-size: 16px;
+      transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn-primary {
+      background: var(--blue);
+      color: white;
+    }
+
+    .btn-primary:hover { background: var(--blue-hover); }
+
+    .btn-login {
+      background: var(--green);
+      color: white;
+    }
+
+    .btn-login:hover { background: var(--green-hover); }
+
+    .btn-secondary {
+      background: var(--panel-2);
+      color: white;
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: #202b3b;
+      border-color: rgba(255, 255, 255, 0.14);
+    }
+
+    .btn-note {
+      margin-top: -2px;
+      font-size: 13px;
+      color: var(--muted-2);
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .device-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      padding: 0 22px 22px;
+    }
+
+    .card {
+      background: rgba(24, 34, 48, 0.9);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      text-align: left;
+    }
+
+    .card h2 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      line-height: 1.2;
+    }
+
+    .card p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 15px;
+    }
+
+    .steps {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--text);
+      line-height: 1.75;
+      font-size: 15px;
+    }
+
+    .steps li { margin-bottom: 8px; }
+
+    .tips {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: rgba(47, 128, 237, 0.1);
+      border: 1px solid rgba(47, 128, 237, 0.18);
+      color: var(--soft);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .feature-strip {
+      padding: 0 22px 22px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .feature {
+      background: rgba(18, 26, 36, 0.85);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 15px 16px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+      text-align: left;
+    }
+
+    .feature strong { color: var(--text); }
+
+    .footer {
+      text-align: center;
+      color: var(--muted-2);
+      font-size: 13px;
+      line-height: 1.7;
+      padding: 26px 18px 6px;
+    }
+
+    .footer a {
+      color: #cdd8e6;
+      text-decoration: none;
+    }
+
+    .footer a:hover { text-decoration: underline; }
+
+    @media (min-width: 700px) {
+      .device-grid { grid-template-columns: 1fr 1fr; }
+      .feature-strip { grid-template-columns: repeat(3, 1fr); }
+      h1 { font-size: 42px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <main class="hero">
+      <section class="hero-top">
+        <div class="brand-badge">SmartShop by ORA • Easy Access</div>
+
+        <img
+          src="smartshop-logo.png"
+          alt="SmartShop by ORA logo"
+          class="logo"
+        />
+
+        <h1>Access SmartShop Your Way</h1>
+
+        <p class="subhead">
+          Open the SmartShop web app, sign in to your account, or access the Android install route.
+          Built to make everyday grocery planning faster, cleaner, and a whole lot less annoying.
+        </p>
+      </section>
+
+      <div class="hero-callout">
+        <strong>The easiest option is still the web app.</strong><br />
+        It opens right in your browser and works great on most devices with no install required.
       </div>
-    );
-  }
 
-  return (
-    <div className="min-h-screen bg-background">
-      <div className="mx-auto flex min-h-screen max-w-5xl items-center justify-center px-4 py-10 sm:px-6">
-        <div className="grid w-full gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="relative overflow-hidden rounded-3xl border border-border bg-card shadow-[var(--card-shadow)]">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.12),transparent_32%),radial-gradient(circle_at_bottom_left,rgba(34,197,94,0.08),transparent_28%)]" />
+      <div class="web-option">
+        <strong>Good news:</strong> you can use SmartShop without installing anything.
+        Open the web app, sign in, and start using it right away. If you’re on iPhone or iPad,
+        you can also add it to your Home Screen for quick one-tap access.
+      </div>
 
-            <div className="relative p-6 sm:p-8">
-              <button
-                type="button"
-                onClick={() => navigate("/")}
-                className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-3 py-1.5 text-xs font-medium text-muted-foreground transition hover:bg-background hover:text-foreground"
-              >
-                <ChevronLeft className="h-4 w-4" />
-                Back to SmartShop
-              </button>
+      <section class="actions">
+        <a
+          class="btn btn-primary"
+          href="https://smartshopbyora.lovable.app/?source=installpage"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Open SmartShop
+        </a>
 
-              <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 ring-1 ring-primary/20">
-                <Smartphone className="h-8 w-8 text-primary" />
-              </div>
+        <a
+          class="btn btn-login"
+          href="https://smartshopbyora.lovable.app/login?source=installpage"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Log In
+        </a>
 
-              <div className="space-y-3">
-                <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary ring-1 ring-primary/20">
-                  <ShieldCheck className="h-3.5 w-3.5" />
-                  Verified subscriber access
-                </div>
+        <a class="btn btn-secondary" href="#ios-guide">
+          iPhone / iPad Help
+        </a>
 
-                <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                  Get SmartShop for Android
-                </h1>
+        <a
+          class="btn btn-secondary"
+          href="https://smartshopbyora.lovable.app/get-app?source=installpage&download=apk"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Download Android APK
+        </a>
 
-                <p className="max-w-xl text-sm leading-6 text-muted-foreground sm:text-base">
-                  Download the Android app with your SmartShop access already
-                  recognized. Your lists, settings, and subscription stay tied to
-                  your account across web and app.
-                </p>
-              </div>
+        <div class="btn-note">
+          Android download is routed through SmartShop so account access can be verified first.
+        </div>
+      </section>
 
-              <div className="mt-8 grid gap-3 sm:grid-cols-3">
-                <div className="rounded-2xl border border-border bg-background/60 p-4">
-                  <Cloud className="mb-2 h-5 w-5 text-primary" />
-                  <h3 className="text-sm font-semibold text-foreground">Cloud Sync</h3>
-                  <p className="mt-1 text-xs leading-5 text-muted-foreground">
-                    Lists and account data stay in sync across devices.
-                  </p>
-                </div>
+      <section class="device-grid">
+        <div class="card" id="ios-guide">
+          <h2>🍎 iPhone / iPad Users</h2>
+          <p>
+            The easiest way to use SmartShop on iPhone is through Safari.
+            You can also add it to your Home Screen so it feels much more like a normal app.
+          </p>
 
-                <div className="rounded-2xl border border-border bg-background/60 p-4">
-                  <Lock className="mb-2 h-5 w-5 text-primary" />
-                  <h3 className="text-sm font-semibold text-foreground">Access Controlled</h3>
-                  <p className="mt-1 text-xs leading-5 text-muted-foreground">
-                    Download access is routed through your SmartShop account.
-                  </p>
-                </div>
+          <ol class="steps">
+            <li>Tap <strong>Open SmartShop</strong> above.</li>
+            <li>If needed, open the page in <strong>Safari</strong>.</li>
+            <li>Tap the <strong>Share</strong> button in Safari.</li>
+            <li>Scroll and tap <strong>Add to Home Screen</strong>.</li>
+            <li>Tap <strong>Add</strong>.</li>
+            <li>Open SmartShop anytime from your Home Screen.</li>
+          </ol>
 
-                <div className="rounded-2xl border border-border bg-background/60 p-4">
-                  <CheckCircle2 className="mb-2 h-5 w-5 text-primary" />
-                  <h3 className="text-sm font-semibold text-foreground">Ready to Install</h3>
-                  <p className="mt-1 text-xs leading-5 text-muted-foreground">
-                    Built for Android users who want a more app-like experience.
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Button
-                  onClick={handleDownload}
-                  size="lg"
-                  disabled={isLoggingDownload}
-                  className="h-12 flex-1 gap-2 text-sm font-semibold"
-                >
-                  {isLoggingDownload ? (
-                    <Loader2 className="h-5 w-5 animate-spin" />
-                  ) : (
-                    <Download className="h-5 w-5" />
-                  )}
-                  Download APK
-                </Button>
-
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="h-12 flex-1 gap-2 text-sm font-semibold"
-                  onClick={() => navigate("/")}
-                >
-                  <ExternalLink className="h-4 w-4" />
-                  Open Web App Instead
-                </Button>
-              </div>
-
-              <div className="mt-6 rounded-2xl border border-border bg-background/60 p-4">
-                <p className="text-sm font-medium text-foreground">
-                  Signed in as
-                </p>
-                <p className="mt-1 break-all text-sm text-muted-foreground">
-                  {user.email}
-                </p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  <span className="rounded-full bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary ring-1 ring-primary/20">
-                    Subscription active
-                  </span>
-                  <span className="rounded-full bg-secondary px-2.5 py-1 text-xs font-medium text-secondary-foreground">
-                    Source: {source}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="rounded-3xl border border-border bg-card p-6 shadow-[var(--card-shadow)] sm:p-8">
-            <h2 className="text-xl font-bold text-foreground">Before you install</h2>
-            <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              A few quick notes so the experience stays smooth.
-            </p>
-
-            <div className="mt-6 space-y-4">
-              <div className="rounded-2xl border border-border bg-background/60 p-4">
-                <h3 className="text-sm font-semibold text-foreground">1. Download from this page only</h3>
-                <p className="mt-1 text-xs leading-5 text-muted-foreground">
-                  This route helps confirm access and gives you the correct build link.
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-border bg-background/60 p-4">
-                <h3 className="text-sm font-semibold text-foreground">2. Install on your Android device</h3>
-                <p className="mt-1 text-xs leading-5 text-muted-foreground">
-                  After downloading, open the APK on your phone and follow the install prompts.
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-border bg-background/60 p-4">
-                <h3 className="text-sm font-semibold text-foreground">3. Sign in with the same account</h3>
-                <p className="mt-1 text-xs leading-5 text-muted-foreground">
-                  Use the same SmartShop account so your subscription and synced data match properly.
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-6 rounded-2xl bg-primary/5 p-4 ring-1 ring-primary/15">
-              <p className="text-sm font-semibold text-foreground">
-                Prefer not to install anything?
-              </p>
-              <p className="mt-1 text-xs leading-5 text-muted-foreground">
-                The SmartShop web app is still the easiest option and works great on most phones, tablets, and desktops.
-              </p>
-            </div>
+          <div class="tips">
+            If you opened the page from Facebook or another app, look for
+            <strong>Open in Safari</strong> first. After that, adding it to your Home Screen is easy.
           </div>
         </div>
-      </div>
-    </div>
-  );
-}
+
+        <div class="card">
+          <h2>🤖 Android Users</h2>
+          <p>
+            You can use SmartShop right in your browser, or request the Android version through your SmartShop account if you prefer a more app-like install experience.
+          </p>
+
+          <ol class="steps">
+            <li>For the simplest option, tap <strong>Open SmartShop</strong>.</li>
+            <li>Log in and start using it right away.</li>
+            <li>If you want the Android version, tap <strong>Download Android APK</strong>.</li>
+            <li>You may be asked to log in or confirm access before the download starts.</li>
+            <li>Open the file on your Android phone and follow the install prompts.</li>
+            <li>Once installed, sign in and your account should sync normally.</li>
+          </ol>
+
+          <div class="tips">
+            Not into downloading apps outside the Play Store? Totally fair — the web app is still the easiest option and works great.
+          </div>
+        </div>
+      </section>
+
+      <section class="feature-strip">
+        <div class="feature">
+          <strong>No pressure install</strong><br />
+          Use SmartShop right in your browser without downloading anything at all.
+        </div>
+
+        <div class="feature">
+          <strong>Account-based access</strong><br />
+          Android install access is routed through SmartShop so your subscription can be checked first.
+        </div>
+
+        <div class="feature">
+          <strong>Built for real life</strong><br />
+          Practical grocery tools made to save time, money, gas, and extra running around.
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      Built by Operators<br />
+      Operational Reality Advisors<br /><br />
+      <a
+        href="https://smartshopbyora.lovable.app/?source=installpage"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Open SmartShop
+      </a>
+    </footer>
+  </div>
+</body>
+</html>
