@@ -5,130 +5,158 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>SmartShop | ORA Developments PEI</title>
+<title>SmartShop | ORA Developments</title>
 
-<meta name="description" content="SmartShop helps you organize grocery shopping, reduce wasted trips, and plan smarter purchases. Built by ORA Developments PEI.">
+<meta name="description" content="SmartShop helps you plan grocery trips smarter, organize shopping lists, and reduce wasted fuel and time.">
+
+<link rel="icon" href="assets/ora-logo.png">
 
 <style>
 
+*{box-sizing:border-box}
+
 body{
 margin:0;
-font-family:Arial,Helvetica,sans-serif;
+font-family:system-ui,-apple-system,Segoe UI,Roboto;
 background:#0b1118;
 color:white;
 }
 
+/* NAV */
+
+nav{
+position:fixed;
+top:20px;
+left:50%;
+transform:translateX(-50%);
+background:rgba(15,20,30,.75);
+backdrop-filter:blur(16px);
+border:1px solid rgba(255,255,255,.06);
+padding:14px 30px;
+border-radius:40px;
+z-index:1000;
+}
+
+nav a{
+color:#c7d4e5;
+text-decoration:none;
+margin:0 18px;
+font-size:14px;
+}
+
+nav a:hover{color:white}
+
+/* LAYOUT */
+
 .wrap{
-max-width:900px;
+max-width:1100px;
 margin:auto;
 padding:40px 20px;
 }
 
-header{
+.spacer{height:110px}
+
+/* HERO */
+
+.hero{
 text-align:center;
-margin-bottom:40px;
+padding:120px 20px 80px;
 }
 
-.logo{
-width:200px;
+.hero img{
+width:140px;
 margin-bottom:20px;
 }
 
-h1{
-font-size:40px;
-margin-bottom:10px;
+.hero h1{
+font-size:60px;
+margin:0 0 10px;
 }
 
-.sub{
-color:#b8c2cf;
-max-width:600px;
+.hero p{
+font-size:20px;
+color:#a9b6c6;
+max-width:620px;
 margin:auto;
-line-height:1.6;
 }
 
-.actions{
-margin-top:40px;
-display:grid;
-gap:15px;
-}
+/* CTA */
 
-.btn{
-display:block;
-text-align:center;
-padding:16px;
-border-radius:10px;
-font-weight:bold;
-text-decoration:none;
-}
-
-.primary{
-background:#2f80ed;
-}
-
-.login{
-background:#21a366;
-}
-
-.secondary{
-background:#182230;
-border:1px solid rgba(255,255,255,0.1);
-}
-
-.card{
-background:#111a24;
-border-radius:16px;
-padding:25px;
+.cta{
 margin-top:30px;
 }
 
-.card h2{
+.btn{
+display:inline-block;
+padding:16px 28px;
+border-radius:12px;
+text-decoration:none;
+color:white;
+font-size:15px;
+background:linear-gradient(135deg,#2f80ed,#4ea1ff);
+}
+
+.btn:hover{
+transform:translateY(-2px);
+}
+
+/* SECTION */
+
+.section{
+margin-top:120px;
+}
+
+.section h2{
+text-align:center;
+font-size:36px;
+margin-bottom:50px;
+}
+
+/* GRID */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:28px;
+}
+
+/* CARD */
+
+.card{
+background:#111a24;
+padding:32px;
+border-radius:18px;
+border:1px solid rgba(255,255,255,.05);
+}
+
+.card h3{
 margin-top:0;
 }
 
-.steps{
-padding-left:20px;
-line-height:1.8;
+.card p{
+color:#a9b6c6;
 }
 
-.features{
-margin-top:40px;
+/* SCREENSHOTS */
+
+.screenshots{
 display:grid;
-gap:15px;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:30px;
 }
 
-.feature{
-background:#182230;
-padding:18px;
-border-radius:12px;
-color:#cfd6e3;
+.screenshots img{
+width:100%;
+border-radius:14px;
 }
+
+/* FOOTER */
 
 footer{
-margin-top:60px;
+margin-top:140px;
 text-align:center;
-color:#8e9aaa;
-}
-
-nav{
-position:fixed;
-top:0;
-left:0;
-right:0;
-background:#0b1118;
-border-bottom:1px solid rgba(255,255,255,0.08);
-padding:12px;
-text-align:center;
-}
-
-nav a{
-color:white;
-text-decoration:none;
-margin:0 12px;
+color:#7d8a9a;
 font-size:14px;
-}
-
-.spacer{
-height:50px;
 }
 
 </style>
@@ -138,7 +166,7 @@ height:50px;
 <body>
 
 <nav>
-<a href="index.html">ORA Developments</a>
+<a href="index.html">ORA</a>
 <a href="smartshop.html">SmartShop</a>
 <a href="informme.html">Inform' Me</a>
 <a href="fleet.html">Fleet Tools</a>
@@ -149,103 +177,93 @@ height:50px;
 
 <div class="wrap">
 
-<header>
+<section class="hero">
 
-<img src="smartshop-logo.png" class="logo">
+<img src="assets/smartshop-logo.png">
 
 <h1>SmartShop</h1>
 
-<p class="sub">
-A smarter grocery planning tool designed to help reduce wasted trips, save time,
-and organize shopping more efficiently.
+<p>
+A smarter grocery planning platform designed to reduce wasted trips,
+organize shopping lists, and optimize grocery spending.
 </p>
 
-</header>
-
-<section class="actions">
-
-<a class="btn primary" href="https://smartshopbyora.lovable.app" target="_blank">
-Open SmartShop Web App
-</a>
-
-<a class="btn login" href="https://smartshopbyora.lovable.app/login" target="_blank">
-Log In
-</a>
-
-<a class="btn secondary" href="#ios">
-iPhone / iPad Instructions
-</a>
-
-<a class="btn secondary" href="https://smartshopbyora.lovable.app/get-app?download=apk" target="_blank">
-Download Android APK
-</a>
+<div class="cta">
+<a class="btn" href="https://smartshopbyora.lovable.app">Open SmartShop</a>
+</div>
 
 </section>
 
-<div class="card" id="ios">
+<section class="section">
 
-<h2>iPhone / iPad Users</h2>
+<h2>Why SmartShop Exists</h2>
 
-<p>
-SmartShop works great directly in Safari and can be added to your home screen
-for an app-like experience.
+<p style="text-align:center; max-width:700px; margin:auto; color:#a9b6c6;">
+People often drive across multiple stores chasing small deals,
+only to burn more fuel and time than the savings are worth.
+SmartShop helps plan smarter grocery trips so the savings are real.
 </p>
 
-<ol class="steps">
+</section>
 
-<li>Open SmartShop using the button above</li>
-<li>Open the page in Safari</li>
-<li>Tap the Share button</li>
-<li>Select "Add to Home Screen"</li>
-<li>Tap Add</li>
+<section class="section">
 
-</ol>
+<h2>Features</h2>
 
+<div class="grid">
+
+<div class="card">
+<h3>Smart Grocery Lists</h3>
+<p>Create organized lists that keep shopping efficient.</p>
 </div>
 
 <div class="card">
+<h3>Trip Planning</h3>
+<p>Reduce unnecessary store hopping and wasted fuel.</p>
+</div>
 
-<h2>Android Users</h2>
+<div class="card">
+<h3>Household Lists</h3>
+<p>Manage groceries across multiple family members.</p>
+</div>
 
-<p>
-You can use SmartShop directly in your browser or install the Android version.
-</p>
-
-<ol class="steps">
-
-<li>Open SmartShop</li>
-<li>Log into your account</li>
-<li>Tap Download Android APK</li>
-<li>Install the downloaded file</li>
-<li>Sign in and start using SmartShop</li>
-
-</ol>
+<div class="card">
+<h3>Mobile Friendly</h3>
+<p>Use SmartShop directly from your phone browser.</p>
+</div>
 
 </div>
 
-<section class="features">
+</section>
 
-<div class="feature">
-<b>No forced installs</b><br>
-Use SmartShop directly in your browser.
+<section class="section">
+
+<h2>App Preview</h2>
+
+<div class="screenshots">
+
+<img src="assets/smartshop-preview.png">
+<img src="assets/smartshop-dashboard.png">
+
 </div>
 
-<div class="feature">
-<b>Account based access</b><br>
-Android installs verify your SmartShop account.
-</div>
+</section>
 
-<div class="feature">
-<b>Built for real life</b><br>
-Designed to save gas, time, and money.
-</div>
+<section class="section" style="text-align:center">
+
+<h2>Access SmartShop</h2>
+
+<a class="btn" href="https://smartshopbyora.lovable.app">
+Launch Web App
+</a>
 
 </section>
 
 <footer>
 
-ORA Developments PEI<br>
-Built by Operators
+<p>
+SmartShop by ORA Developments PEI
+</p>
 
 </footer>
 
