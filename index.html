@@ -62,6 +62,7 @@ nav a{
 text-decoration:none;
 color:#9fb2c7;
 font-size:14px;
+transition:.2s;
 }
 
 nav a:hover{color:white;}
@@ -84,7 +85,8 @@ margin-bottom:20px;
 
 .hero h1{
 font-size:64px;
-margin-bottom:10px;
+margin-bottom:12px;
+letter-spacing:-1px;
 }
 
 .hero p{
@@ -106,6 +108,12 @@ font-size:15px;
 margin:8px;
 color:white;
 background:linear-gradient(135deg,#2f80ed,#4ea1ff);
+transition:.25s;
+}
+
+.btn:hover{
+transform:translateY(-2px);
+box-shadow:0 10px 25px rgba(0,0,0,.4);
 }
 
 .btn.secondary{
@@ -139,11 +147,9 @@ padding:30px;
 text-align:center;
 border:1px solid rgba(255,255,255,.05);
 transition:.35s;
-}
-
-.card img{
-width:110px;
-margin-bottom:20px;
+cursor:pointer;
+position:relative;
+overflow:hidden;
 }
 
 .card:hover{
@@ -151,7 +157,25 @@ transform:translateY(-12px) scale(1.02);
 box-shadow:0 50px 120px rgba(0,0,0,.6);
 }
 
-/* FEATURED TAG */
+.card::after{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(120deg,transparent,rgba(255,255,255,.05),transparent);
+opacity:0;
+transition:.4s;
+}
+
+.card:hover::after{
+opacity:1;
+}
+
+.card img{
+width:110px;
+margin-bottom:20px;
+}
+
+/* TAG */
 .tag{
 display:inline-block;
 font-size:12px;
@@ -183,6 +207,7 @@ border-radius:20px;
 .founder p{
 color:#9fb2c7;
 font-size:18px;
+line-height:1.6;
 }
 
 /* FOOTER */
@@ -227,10 +252,10 @@ grid-template-columns:1fr;
 
 <img src="assets/ora-dev-logo.png">
 
-<h1>Built by Operators</h1>
+<h1>Built by Operators. Designed for Real Life.</h1>
 
 <p>
-Tools, systems, and apps designed from real-world experience to simplify work, life, and operations.
+ORA Developments builds tools that solve real-world problems — from fleet operations to everyday life systems.
 </p>
 
 <div class="buttons">
@@ -250,25 +275,25 @@ Work With ORA
 <!-- FEATURED PRODUCTS -->
 <section>
 
-<h2>Featured Systems</h2>
+<h2>Core Systems</h2>
 
 <div class="products">
 
-<div class="card">
+<div class="card" onclick="location.href='projects.html'">
 <span class="tag">Fleet</span>
 <img src="assets/fleetpulse.png">
 <h3>Fleet Pulse</h3>
 <p>Complete fleet operations dashboard.</p>
 </div>
 
-<div class="card">
+<div class="card" onclick="location.href='projects.html'">
 <span class="tag">Operations</span>
 <img src="assets/informme.png">
 <h3>Inform’ Me</h3>
 <p>Field-to-office communication system.</p>
 </div>
 
-<div class="card">
+<div class="card" onclick="location.href='projects.html'">
 <span class="tag">Finance</span>
 <img src="assets/expendme.png">
 <h3>Expend Me</h3>
@@ -278,7 +303,7 @@ Work With ORA
 </div>
 
 <div class="cta-strip">
-<a class="btn" href="projects.html">View All Products</a>
+<a class="btn" href="projects.html">View Full Ecosystem</a>
 </div>
 
 </section>
@@ -353,7 +378,7 @@ Every tool is designed to solve actual problems — not theoretical ones.
 <h2>Let’s Build Something Real</h2>
 
 <p style="color:#9fb2c7;margin-top:10px">
-Work with ORA or explore the ecosystem of tools designed for real life.
+Explore the ecosystem or connect with ORA to build real-world solutions.
 </p>
 
 <a class="btn" href="projects.html" style="margin-top:20px">
