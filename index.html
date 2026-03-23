@@ -11,26 +11,17 @@
 <style>
 
 /* GLOBAL */
-
-*{
-box-sizing:border-box;
-margin:0;
-padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0;}
 
 body{
-
 font-family:system-ui,-apple-system,Segoe UI,Roboto;
 background:#0b1118;
 color:white;
 overflow-x:hidden;
-
 }
 
-/* BACKGROUND GRADIENT */
-
+/* BACKGROUND */
 body::before{
-
 content:"";
 position:fixed;
 top:-50%;
@@ -38,31 +29,24 @@ left:-50%;
 width:200%;
 height:200%;
 background:
-
-radial-gradient(circle at 30% 40%,#1a4cff44,transparent 40%),
-radial-gradient(circle at 70% 60%,#ff7a0044,transparent 40%);
-
+radial-gradient(circle at 30% 40%,#1a4cff33,transparent 40%),
+radial-gradient(circle at 70% 60%,#ff7a0033,transparent 40%);
 animation:moveGradient 20s infinite linear;
 z-index:-1;
-
 }
 
 @keyframes moveGradient{
-
 0%{transform:rotate(0deg)}
 100%{transform:rotate(360deg)}
-
 }
 
-/* NAVBAR */
-
+/* NAV */
 nav{
-
 position:fixed;
 top:20px;
 left:50%;
 transform:translateX(-50%);
-background:rgba(10,14,22,.7);
+background:rgba(10,14,22,.75);
 backdrop-filter:blur(18px);
 padding:14px 26px;
 border-radius:40px;
@@ -70,75 +54,50 @@ display:flex;
 align-items:center;
 gap:30px;
 z-index:1000;
-
 }
 
-nav img{
-
-height:36px;
-
-}
+nav img{height:36px;}
 
 nav a{
-
 text-decoration:none;
 color:#9fb2c7;
 font-size:14px;
-
 }
 
-nav a:hover{
-
-color:white;
-
-}
+nav a:hover{color:white;}
 
 /* HERO */
-
 .hero{
-
-height:100vh;
+min-height:100vh;
 display:flex;
 align-items:center;
 justify-content:center;
 flex-direction:column;
 text-align:center;
 padding:40px;
-
 }
 
 .hero img{
-
-width:160px;
+width:140px;
 margin-bottom:20px;
-
 }
 
 .hero h1{
-
-font-size:70px;
+font-size:64px;
 margin-bottom:10px;
-
 }
 
 .hero p{
-
 color:#a6b4c6;
 font-size:20px;
-max-width:600px;
-
+max-width:620px;
 }
 
-/* BUTTONS */
-
 .buttons{
-
 margin-top:30px;
-
 }
 
 .btn{
-
 display:inline-block;
 padding:16px 26px;
 border-radius:12px;
@@ -146,119 +105,102 @@ text-decoration:none;
 font-size:15px;
 margin:8px;
 color:white;
-
 background:linear-gradient(135deg,#2f80ed,#4ea1ff);
-
 }
 
 .btn.secondary{
-
 background:#21a366;
-
 }
 
 /* SECTION */
-
 section{
-
 padding:120px 20px;
 max-width:1200px;
 margin:auto;
-
 }
 
 section h2{
-
 text-align:center;
-font-size:40px;
+font-size:42px;
 margin-bottom:60px;
-
 }
 
 /* PRODUCT GRID */
-
 .products{
-
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:40px;
-
 }
 
 .card{
-
 background:#101822;
-border-radius:20px;
+border-radius:22px;
 padding:30px;
 text-align:center;
 border:1px solid rgba(255,255,255,.05);
-
 transition:.35s;
-
 }
 
 .card img{
-
-width:120px;
+width:110px;
 margin-bottom:20px;
-
 }
 
 .card:hover{
-
-transform:translateY(-12px);
+transform:translateY(-12px) scale(1.02);
 box-shadow:0 50px 120px rgba(0,0,0,.6);
+}
 
+/* FEATURED TAG */
+.tag{
+display:inline-block;
+font-size:12px;
+padding:4px 10px;
+border-radius:20px;
+margin-bottom:10px;
+background:#3a7cff;
+}
+
+/* CTA STRIP */
+.cta-strip{
+text-align:center;
+margin-top:40px;
 }
 
 /* FOUNDER */
-
 .founder{
-
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:60px;
 align-items:center;
-
 }
 
 .founder img{
-
 width:100%;
-
+border-radius:20px;
 }
 
 .founder p{
-
 color:#9fb2c7;
 font-size:18px;
-
 }
 
 /* FOOTER */
-
 footer{
-
 text-align:center;
 padding:100px 20px;
 color:#7d8a9a;
-
 }
 
 footer img{
-
 width:220px;
 margin-bottom:20px;
-
 }
 
 /* MOBILE */
-
 @media(max-width:800px){
 
-.hero h1{
-font-size:44px;
-}
+.hero h1{font-size:42px;}
 
 .founder{
 grid-template-columns:1fr;
@@ -272,133 +214,117 @@ grid-template-columns:1fr;
 
 <body>
 
-
-<!-- NAVBAR -->
-
+<!-- NAV -->
 <nav>
-
 <img src="assets/ora-dev-logo.png">
-
-<a href="#">Home</a>
-<a href="smartshop.html">SmartShop</a>
-<a href="#">Products</a>
+<a href="index.html">Home</a>
+<a href="projects.html">Projects</a>
 <a href="#">About</a>
-
 </nav>
 
-
-
 <!-- HERO -->
-
 <section class="hero">
 
 <img src="assets/ora-dev-logo.png">
 
-<h1>ORA Developments</h1>
+<h1>Built by Operators</h1>
 
 <p>
-
-Software tools built from real operational experience.
-
+Tools, systems, and apps designed from real-world experience to simplify work, life, and operations.
 </p>
 
 <div class="buttons">
 
-<a class="btn" href="smartshop.html">
-Explore Products
+<a class="btn" href="projects.html">
+Explore Ecosystem
 </a>
 
 <a class="btn secondary" href="#">
-Contact
+Work With ORA
 </a>
 
 </div>
 
 </section>
 
-
-
-<!-- PRODUCTS -->
-
+<!-- FEATURED PRODUCTS -->
 <section>
 
-<h2>ORA Software Ecosystem</h2>
+<h2>Featured Systems</h2>
 
 <div class="products">
 
 <div class="card">
+<span class="tag">Fleet</span>
+<img src="assets/fleetpulse.png">
+<h3>Fleet Pulse</h3>
+<p>Complete fleet operations dashboard.</p>
+</div>
 
-<img src="assets/smart-shop-ora.png">
+<div class="card">
+<span class="tag">Operations</span>
+<img src="assets/informme.png">
+<h3>Inform’ Me</h3>
+<p>Field-to-office communication system.</p>
+</div>
 
-<h3>SmartShop</h3>
-
-<p>Smart grocery planning that saves fuel and money.</p>
+<div class="card">
+<span class="tag">Finance</span>
+<img src="assets/expendme.png">
+<h3>Expend Me</h3>
+<p>Simple budgeting for real life.</p>
+</div>
 
 </div>
 
-
-<div class="card">
-
-<img src="assets/Inform-Me.png">
-
-<h3>Inform' Me</h3>
-
-<p>Field-to-office reporting for operators.</p>
-
+<div class="cta-strip">
+<a class="btn" href="projects.html">View All Products</a>
 </div>
 
+</section>
+
+<!-- ECOSYSTEM -->
+<section>
+
+<h2>ORA Ecosystem</h2>
+
+<div class="products">
 
 <div class="card">
-
-<img src="assets/shifty-logo.png">
-
-<h3>Shifty</h3>
-
-<p>Smart workforce scheduling.</p>
-
+<h3>Operations</h3>
+<p>Inform’ Me, Quick Log, Shifty</p>
 </div>
 
-
 <div class="card">
-
-<img src="assets/work-forge-large.png">
-
-<h3>WorkForge</h3>
-
-<p>Forge powerful operational tools.</p>
-
+<h3>Finance</h3>
+<p>Expend Me</p>
 </div>
 
-
 <div class="card">
-
-<img src="assets/Inventoried-logo.png">
-
-<h3>Inventoried</h3>
-
-<p>Inventory and asset tracking.</p>
-
+<h3>Planning</h3>
+<p>Smart Meal, SmartShop</p>
 </div>
 
+<div class="card">
+<h3>Documents</h3>
+<p>Quick Doc, Page Master, Resu-Mate</p>
+</div>
 
 <div class="card">
+<h3>Development</h3>
+<p>WorkForge, App Forge</p>
+</div>
 
-<img src="assets/market-me.png">
-
-<h3>Market Me</h3>
-
-<p>Growth tools for small business.</p>
-
+<div class="card">
+<h3>Local Platform</h3>
+<p>Explore PEI</p>
 </div>
 
 </div>
 
 </section>
 
-
-
 <!-- FOUNDER -->
-
 <section>
 
 <div class="founder">
@@ -407,14 +333,12 @@ Contact
 
 <div>
 
-<h2>Built by Operators</h2>
+<h2>Built from Real Work</h2>
 
 <p>
+ORA Developments is built from hands-on experience in trucking, operations, and real-world environments.
 
-ORA Developments creates practical software tools inspired by real work environments.
-
-Our products are built to solve operational problems in logistics, field work, and everyday life.
-
+Every tool is designed to solve actual problems — not theoretical ones.
 </p>
 
 </div>
@@ -423,21 +347,28 @@ Our products are built to solve operational problems in logistics, field work, a
 
 </section>
 
+<!-- CTA -->
+<section style="text-align:center">
 
+<h2>Let’s Build Something Real</h2>
+
+<p style="color:#9fb2c7;margin-top:10px">
+Work with ORA or explore the ecosystem of tools designed for real life.
+</p>
+
+<a class="btn" href="projects.html" style="margin-top:20px">
+Explore Products
+</a>
+
+</section>
 
 <!-- FOOTER -->
-
 <footer>
 
 <img src="assets/OPREALITY FOOTER.png">
 
-<p>
-Operational Reality Advisors
-</p>
-
-<p>
-Prince Edward Island, Canada
-</p>
+<p>Operational Reality Advisors</p>
+<p>Prince Edward Island, Canada</p>
 
 </footer>
 
