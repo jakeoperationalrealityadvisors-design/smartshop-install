@@ -82,6 +82,16 @@ transform:translateY(-10px) scale(1.02);
 box-shadow:0 40px 120px rgba(0,0,0,.7);
 }
 
+.card::after{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(120deg,transparent,rgba(255,255,255,.06),transparent);
+opacity:0;
+transition:.4s;
+}
+.card:hover::after{opacity:1;}
+
 .card img{
 width:110px;
 margin-bottom:20px;
@@ -104,35 +114,9 @@ font-weight:600;
 
 .dev{background:#3a7cff;}
 .concept{background:#ff7a00;}
-.research{background:#777;}
 .testing{background:#00c896;color:black;}
 .early{background:#6b7280;}
 .late{background:#9333ea;}
-
-/* CTA */
-.cta{text-align:center;padding:120px 20px;}
-
-.button{
-display:inline-block;
-margin-top:20px;
-padding:16px 26px;
-border-radius:12px;
-background:linear-gradient(135deg,#2f80ed,#4ea1ff);
-color:white;
-text-decoration:none;
-}
-
-/* FOOTER */
-footer{
-text-align:center;
-padding:100px 20px;
-color:#7d8a9a;
-}
-
-footer img{
-width:200px;
-margin-bottom:20px;
-}
 
 /* MODAL */
 .modal{
@@ -175,18 +159,14 @@ opacity:.7;
 }
 .close-btn:hover{opacity:1;}
 
-.modal h2{
-margin-bottom:10px;
-}
+.modal h2{margin-bottom:10px;}
 
 .modal p{
 color:#9fb2c7;
 margin-top:5px;
 }
 
-.features{
-margin-top:20px;
-}
+.features{margin-top:20px;}
 
 .feature-item{
 padding:6px 0;
@@ -194,8 +174,31 @@ border-bottom:1px solid rgba(255,255,255,.05);
 font-size:14px;
 }
 
-.modal-status{
+/* CTA BUTTON */
+.modal-cta{
 margin-top:20px;
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
+
+.cta-btn{
+flex:1;
+padding:12px;
+border:none;
+border-radius:10px;
+background:#2f80ed;
+color:white;
+cursor:pointer;
+font-weight:600;
+}
+
+.cta-btn.secondary{
+background:#1f2937;
+}
+
+.modal-status{
+margin-top:15px;
 font-weight:bold;
 }
 
@@ -207,7 +210,6 @@ font-weight:bold;
 <nav>
 <img src="assets/ora-dev-logo.png">
 <a href="index.html">Home</a>
-<a href="products.html">Products</a>
 <a href="projects.html">Projects</a>
 </nav>
 
@@ -232,76 +234,6 @@ font-weight:bold;
 <span class="status concept">Concept</span>
 </div>
 
-<div class="card" onclick="openModal('inventoried')">
-<img src="assets/Inventoried-logo.png">
-<h3>Inventoried</h3>
-<p>Smart inventory tracking.</p>
-<span class="status early">Early Development</span>
-</div>
-
-<div class="card" onclick="openModal('informme')">
-<img src="assets/informme.png">
-<h3>Inform’ Me</h3>
-<p>Field to office connection.</p>
-<span class="status dev">In Development</span>
-</div>
-
-<div class="card" onclick="openModal('expendme')">
-<img src="assets/expendme.png">
-<h3>Expend Me</h3>
-<p>Simple budgeting system.</p>
-<span class="status testing">End Testing</span>
-</div>
-
-<div class="card" onclick="openModal('smartmeal')">
-<img src="assets/smartmeal.png">
-<h3>Smart Meal</h3>
-<p>Meal planning made simple.</p>
-<span class="status dev">In Development</span>
-</div>
-
-<div class="card" onclick="openModal('resumate')">
-<img src="assets/resumate.png">
-<h3>Resu-Mate</h3>
-<p>AI resume builder.</p>
-<span class="status late">Late Testing</span>
-</div>
-
-<div class="card" onclick="openModal('quickdoc')">
-<img src="assets/quickdoc.png">
-<h3>Quick Doc</h3>
-<p>Generate documents fast.</p>
-<span class="status dev">In Development</span>
-</div>
-
-<div class="card" onclick="openModal('quicklog')">
-<img src="assets/quicklog.png">
-<h3>Quick Log</h3>
-<p>Simple team checklists.</p>
-<span class="status dev">In Development</span>
-</div>
-
-<div class="card" onclick="openModal('pagemaster')">
-<img src="assets/pagemaster.png">
-<h3>Page Master</h3>
-<p>PDF control tools.</p>
-<span class="status dev">In Development</span>
-</div>
-
-<div class="card" onclick="openModal('explorepei')">
-<img src="assets/explorepei.png">
-<h3>Explore PEI</h3>
-<p>Discover everything local.</p>
-<span class="status dev">In Development</span>
-</div>
-
-<div class="card" onclick="openModal('appforge')">
-<img src="assets/appforge.png">
-<h3>App Forge</h3>
-<p>Build your own apps.</p>
-<span class="status concept">Concept</span>
-</div>
-
 <div class="card" onclick="openModal('fleetpulse')">
 <img src="assets/fleetpulse.png">
 <h3>Fleet Pulse</h3>
@@ -323,6 +255,11 @@ font-weight:bold;
 
 <div class="features" id="modalFeatures"></div>
 
+<div class="modal-cta">
+<button class="cta-btn">Coming Soon</button>
+<button class="cta-btn secondary">Learn More</button>
+</div>
+
 <div class="modal-status" id="modalStatus"></div>
 
 </div>
@@ -333,33 +270,9 @@ font-weight:bold;
 function openModal(product){
 
 const data={
-
-shifty:{title:"Shifty",desc:"Smart scheduling built for real teams.",details:"Manage schedules, shifts, and team communication in one place.",features:["Schedule builder","Shift swaps","Mobile access"],status:"In Development"},
-
-workforge:{title:"WorkForge",desc:"Design and create content.",details:"All-in-one design and media editor.",features:["Visual editor","Audio tools","Templates"],status:"Concept"},
-
-inventoried:{title:"Inventoried",desc:"Inventory tracking system.",details:"Track stock, plan orders, and manage assets.",features:["Tracking","Barcode scanning","Google integrations"],status:"Early Development"},
-
-informme:{title:"Inform’ Me",desc:"Field to office communication.",details:"Logs, checklists, and jobsite reporting.",features:["Logs","Checklists","Reporting"],status:"In Development"},
-
-expendme:{title:"Expend Me",desc:"Budgeting made simple.",details:"Track and manage finances easily.",features:["Expenses","Budgets","Insights"],status:"End Testing"},
-
-smartmeal:{title:"Smart Meal",desc:"Meal planning system.",details:"Plan meals and generate shopping lists.",features:["Meal planner","Lists","Integration"],status:"In Development"},
-
-resumate:{title:"Resu-Mate",desc:"AI resume builder.",details:"Create structured resumes quickly.",features:["AI writing","Templates","Export"],status:"Late Testing"},
-
-quickdoc:{title:"Quick Doc",desc:"Fast document generator.",details:"Create and export documents instantly.",features:["Templates","PDF export","Fast workflow"],status:"In Development"},
-
-quicklog:{title:"Quick Log",desc:"Simple checklists.",details:"Lightweight team logging tool.",features:["Checklists","Logs","Mobile use"],status:"In Development"},
-
-pagemaster:{title:"Page Master",desc:"PDF control system.",details:"Edit and manage PDFs easily.",features:["Sign","Split","Organize"],status:"In Development"},
-
-explorepei:{title:"Explore PEI",desc:"Discover PEI.",details:"Local directory and exploration platform.",features:["Food","Events","Map"],status:"In Development"},
-
-appforge:{title:"App Forge",desc:"Build your own apps.",details:"Generate and export applications.",features:["Builder","Code export","Deploy anywhere"],status:"Concept"},
-
+shifty:{title:"Shifty",desc:"Smart scheduling built for real teams.",details:"Manage schedules and shifts easily.",features:["Scheduling","Shift swaps","Mobile access"],status:"In Development"},
+workforge:{title:"WorkForge",desc:"Design and create content.",details:"All-in-one editor.",features:["Visual tools","Templates","Audio"],status:"Concept"},
 fleetpulse:{title:"Fleet Pulse",desc:"Fleet dashboard.",details:"Track vehicles and operations.",features:["GPS","Routes","Maintenance"],status:"In Development"}
-
 };
 
 const modal=document.getElementById("productModal");
