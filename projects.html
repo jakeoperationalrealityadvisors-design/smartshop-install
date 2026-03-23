@@ -5,13 +5,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>Future Projects | ORA Developments</title>
+<title>Projects | ORA Developments</title>
 
 <style>
 
 /* GLOBAL */
 *{box-sizing:border-box;margin:0;padding:0;}
-
 body{
 font-family:system-ui,-apple-system,Segoe UI,Roboto;
 background:#0b1118;
@@ -44,9 +43,7 @@ padding-top:180px;
 padding-bottom:120px;
 text-align:center;
 }
-
 .hero h1{font-size:60px;margin-bottom:12px;}
-
 .hero p{
 max-width:640px;
 margin:auto;
@@ -73,33 +70,14 @@ text-align:center;
 border:1px solid rgba(255,255,255,.05);
 transition:.35s;
 cursor:pointer;
-position:relative;
-overflow:hidden;
 }
-
 .card:hover{
 transform:translateY(-10px) scale(1.02);
 box-shadow:0 40px 120px rgba(0,0,0,.7);
 }
-
-.card::after{
-content:"";
-position:absolute;
-inset:0;
-background:linear-gradient(120deg,transparent,rgba(255,255,255,.06),transparent);
-opacity:0;
-transition:.4s;
-}
-.card:hover::after{opacity:1;}
-
 .card img{
 width:110px;
 margin-bottom:20px;
-transition:.3s;
-}
-
-.card:hover img{
-transform:scale(1.05);
 }
 
 /* STATUS */
@@ -111,7 +89,6 @@ border-radius:20px;
 margin-top:10px;
 font-weight:600;
 }
-
 .dev{background:#3a7cff;}
 .concept{background:#ff7a00;}
 .testing{background:#00c896;color:black;}
@@ -130,7 +107,6 @@ align-items:center;
 z-index:9999;
 padding:20px;
 }
-
 .modal.hidden{display:none;}
 
 .modal-content{
@@ -139,47 +115,28 @@ padding:30px;
 border-radius:18px;
 width:100%;
 max-width:520px;
-color:white;
-box-shadow:0 0 40px rgba(0,0,0,.6);
-animation:fadeIn .2s ease;
 max-height:90vh;
 overflow-y:auto;
-}
-
-@keyframes fadeIn{
-from{opacity:0;transform:scale(.95);}
-to{opacity:1;transform:scale(1);}
+box-shadow:0 0 40px rgba(0,0,0,.6);
 }
 
 .close-btn{
 float:right;
 font-size:26px;
 cursor:pointer;
-opacity:.7;
-}
-.close-btn:hover{opacity:1;}
-
-.modal h2{margin-bottom:10px;}
-
-.modal p{
-color:#9fb2c7;
-margin-top:5px;
 }
 
 .features{margin-top:20px;}
-
 .feature-item{
 padding:6px 0;
 border-bottom:1px solid rgba(255,255,255,.05);
-font-size:14px;
 }
 
-/* CTA BUTTON */
+/* CTA BUTTONS */
 .modal-cta{
 margin-top:20px;
 display:flex;
 gap:10px;
-flex-wrap:wrap;
 }
 
 .cta-btn{
@@ -214,30 +171,100 @@ font-weight:bold;
 </nav>
 
 <section class="hero">
-<h1>Future Projects</h1>
-<p>ORA Developments is continuously building tools to improve operations, business, and everyday life.</p>
+<h1>ORA Ecosystem</h1>
+<p>Explore the tools being built to simplify work, life, and operations.</p>
 </section>
 
 <section class="projects">
-
-<div class="card" onclick="openModal('shifty')">
-<img src="assets/shifty-logo.png">
-<h3>Shifty</h3>
-<p>Smart scheduling for real teams.</p>
-<span class="status dev">In Development</span>
-</div>
-
-<div class="card" onclick="openModal('workforge')">
-<img src="assets/work-forge.png">
-<h3>WorkForge</h3>
-<p>Design, build, and create content.</p>
-<span class="status concept">Concept</span>
-</div>
 
 <div class="card" onclick="openModal('fleetpulse')">
 <img src="assets/fleetpulse.png">
 <h3>Fleet Pulse</h3>
 <p>Fleet operations dashboard.</p>
+<span class="status dev">In Development</span>
+</div>
+
+<div class="card" onclick="openModal('informme')">
+<img src="assets/informme.png">
+<h3>Inform’ Me</h3>
+<p>Field-to-office communication.</p>
+<span class="status dev">In Development</span>
+</div>
+
+<div class="card" onclick="openModal('shifty')">
+<img src="assets/shifty-logo.png">
+<h3>Shifty</h3>
+<p>Smart scheduling.</p>
+<span class="status dev">In Development</span>
+</div>
+
+<div class="card" onclick="openModal('expendme')">
+<img src="assets/expendme.png">
+<h3>Expend Me</h3>
+<p>Budgeting system.</p>
+<span class="status testing">End Testing</span>
+</div>
+
+<div class="card" onclick="openModal('smartmeal')">
+<img src="assets/smartmeal.png">
+<h3>Smart Meal</h3>
+<p>Meal planning system.</p>
+<span class="status dev">In Development</span>
+</div>
+
+<div class="card" onclick="openModal('resumate')">
+<img src="assets/resumate.png">
+<h3>Resu-Mate</h3>
+<p>Resume builder.</p>
+<span class="status late">Late Testing</span>
+</div>
+
+<div class="card" onclick="openModal('quickdoc')">
+<img src="assets/quickdoc.png">
+<h3>Quick Doc</h3>
+<p>Document generator.</p>
+<span class="status dev">In Development</span>
+</div>
+
+<div class="card" onclick="openModal('quicklog')">
+<img src="assets/quicklog.png">
+<h3>Quick Log</h3>
+<p>Simple checklists.</p>
+<span class="status dev">In Development</span>
+</div>
+
+<div class="card" onclick="openModal('pagemaster')">
+<img src="assets/pagemaster.png">
+<h3>Page Master</h3>
+<p>PDF tools.</p>
+<span class="status dev">In Development</span>
+</div>
+
+<div class="card" onclick="openModal('inventoried')">
+<img src="assets/Inventoried-logo.png">
+<h3>Inventoried</h3>
+<p>Inventory tracking.</p>
+<span class="status early">Early Development</span>
+</div>
+
+<div class="card" onclick="openModal('workforge')">
+<img src="assets/work-forge.png">
+<h3>WorkForge</h3>
+<p>Media editor.</p>
+<span class="status concept">Concept</span>
+</div>
+
+<div class="card" onclick="openModal('appforge')">
+<img src="assets/appforge.png">
+<h3>App Forge</h3>
+<p>Build apps.</p>
+<span class="status concept">Concept</span>
+</div>
+
+<div class="card" onclick="openModal('explorepei')">
+<img src="assets/explorepei.png">
+<h3>Explore PEI</h3>
+<p>Local discovery.</p>
 <span class="status dev">In Development</span>
 </div>
 
@@ -270,9 +297,33 @@ font-weight:bold;
 function openModal(product){
 
 const data={
-shifty:{title:"Shifty",desc:"Smart scheduling built for real teams.",details:"Manage schedules and shifts easily.",features:["Scheduling","Shift swaps","Mobile access"],status:"In Development"},
-workforge:{title:"WorkForge",desc:"Design and create content.",details:"All-in-one editor.",features:["Visual tools","Templates","Audio"],status:"Concept"},
-fleetpulse:{title:"Fleet Pulse",desc:"Fleet dashboard.",details:"Track vehicles and operations.",features:["GPS","Routes","Maintenance"],status:"In Development"}
+
+fleetpulse:{title:"Fleet Pulse",desc:"Complete fleet visibility.",details:"Track vehicles, routes, maintenance and drivers in one system.",features:["GPS tracking","Route planning","Maintenance"],status:"In Development"},
+
+informme:{title:"Inform’ Me",desc:"Field-to-office system.",details:"Logs, checklists and jobsite reporting.",features:["Logs","Checklists","Reports"],status:"In Development"},
+
+shifty:{title:"Shifty",desc:"Scheduling platform.",details:"Manage team schedules and shifts.",features:["Scheduling","Shift swaps","Mobile"],status:"In Development"},
+
+expendme:{title:"Expend Me",desc:"Budgeting system.",details:"Track expenses and manage budgets.",features:["Tracking","Categories","Insights"],status:"End Testing"},
+
+smartmeal:{title:"Smart Meal",desc:"Meal planning.",details:"Plan meals and build ingredient lists.",features:["Meal planner","Lists","Integration"],status:"In Development"},
+
+resumate:{title:"Resu-Mate",desc:"Resume builder.",details:"AI-assisted resume creation.",features:["AI","Templates","Export"],status:"Late Testing"},
+
+quickdoc:{title:"Quick Doc",desc:"Document generator.",details:"Create forms and export quickly.",features:["Templates","PDF export"],status:"In Development"},
+
+quicklog:{title:"Quick Log",desc:"Checklist tool.",details:"Simple team logging system.",features:["Logs","Checklists"],status:"In Development"},
+
+pagemaster:{title:"Page Master",desc:"PDF tools.",details:"Edit and manage PDFs.",features:["Sign","Split"],status:"In Development"},
+
+inventoried:{title:"Inventoried",desc:"Inventory system.",details:"Track assets and plan orders.",features:["Tracking","Barcode"],status:"Early Development"},
+
+workforge:{title:"WorkForge",desc:"Media editor.",details:"Create and edit content.",features:["Design","Audio"],status:"Concept"},
+
+appforge:{title:"App Forge",desc:"App builder.",details:"Build and export apps.",features:["Builder","Export"],status:"Concept"},
+
+explorepei:{title:"Explore PEI",desc:"Local directory.",details:"Discover PEI businesses and events.",features:["Food","Events"],status:"In Development"}
+
 };
 
 const modal=document.getElementById("productModal");
